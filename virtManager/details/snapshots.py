@@ -35,6 +35,10 @@ def _make_screenshot_pixbuf(mime, sdata):
     pixbuf = loader.get_pixbuf()
     loader.close()
 
+    if pixbuf is None:
+        log.error("Unable to create GdkPixbuf, loader.get_pixbuf() returned NoneType")
+        return None
+
     maxsize = 450
 
     def _scale(big, small, maxsize):
